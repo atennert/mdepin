@@ -10,7 +10,7 @@ classdef (HandleCompatible) Bean
         
     methods
         function obj = Bean(config)
-            for prop=config.getProperties();
+            for prop=config.getProperties()
                 obj.(prop{1}) = config.get(prop{1});
             end
         end

@@ -19,8 +19,9 @@ function varargout = createApplication( ctx, id )
 %   OUTPUT:
 %       app - constructed application.  (Optional)
 %
-
+    
 % Copyright Matt McDonnell, 2015
+% Copyright Andreas Tennert, 2019
 % See LICENSE file for license details
 
 if isstruct( ctx )
@@ -29,6 +30,7 @@ end
     
 % Construct the application
 beanFactory = mdepin.BeanFactory( ctx );
+beanFactory.init();
 app = beanFactory.getBean(id);
 
 if nargout>0
