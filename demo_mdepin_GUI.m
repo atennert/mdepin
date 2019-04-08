@@ -21,9 +21,9 @@ ctx.App.Command.Up = 'DisplayUp';
 ctx.App.Command.Down =  'DisplayDown';
 % Define commands
 ctx.DisplayUp.class = 'mdepin.demo.DisplayCommand';
-ctx.DisplayUp.DisplayName = 'Up';
+ctx.DisplayUp.DisplayName = 2;
 ctx.DisplayDown.class = 'mdepin.demo.DisplayCommand';
-ctx.DisplayDown.DisplayName = 'Down';
+ctx.DisplayDown.DisplayName = 3;
 
 % Create the application object
 displayApp = mdepin.createApplication( ctx, 'App' );

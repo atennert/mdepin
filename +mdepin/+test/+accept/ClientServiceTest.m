@@ -2,6 +2,7 @@ classdef ClientServiceTest < matlab.unittest.TestCase
     %CLIENTSERVICETEST Create Client that makes use of Service component
     
     % Copyright Matt McDonnell, 2015
+    % Copyright Andreas Tennert, 2019
     % See LICENSE file for license details
     
     properties
@@ -30,6 +31,7 @@ classdef ClientServiceTest < matlab.unittest.TestCase
             ctx.MyService.Value = testCase.ServiceValue;
             ctx =  mdepin.StructContext( ctx );
             testCase.BeanFactory = mdepin.BeanFactory( ctx );
+            testCase.BeanFactory.init();
         end
         
         function createClient(testCase)

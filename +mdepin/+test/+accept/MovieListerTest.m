@@ -8,6 +8,7 @@ classdef MovieListerTest < matlab.unittest.TestCase
     %   implementations of the finder class.
     
     % Copyright Matt McDonnell, 2015
+    % Copyright Andreas Tennert, 2019
     % See LICENSE file for license details
     
     properties
@@ -17,13 +18,6 @@ classdef MovieListerTest < matlab.unittest.TestCase
     methods (Test)
         function listMoviesFromFile(testCase)
             testCase.createMovieListerFromFile();
-            movies = testCase.getMoviesByAlice();
-            expectedMovies =  {'My First Movie'; 'Movie The Second'};
-            testCase.assertEqual(movies.Title, expectedMovies);
-        end
-        
-        function listMoviesFromURL(testCase)
-            testCase.createMovieListerFromURL();
             movies = testCase.getMoviesByAlice();
             expectedMovies =  {'My First Movie'; 'Movie The Second'};
             testCase.assertEqual(movies.Title, expectedMovies);
@@ -41,19 +35,7 @@ classdef MovieListerTest < matlab.unittest.TestCase
             ctx.FileFinder = struct(...
                 'class', 'mdepin.demo.FileMovieFinder', ...
                 'FileName', fileLoc);
-            testCase.Lister = mdepin.BeanFactory( ...
-                mdepin.StructContext(ctx)).getBean('Lister');
-        end
-        
-        function createMovieListerFromURL(testCase)
-            url =  'http://www.matt-mcdonnell.com/mdepin_demo_Movies.csv';
-            ctx.Lister = struct('class', 'mdepin.demo.MovieLister', ...
-                'Finder', 'FileFinder');
-            ctx.FileFinder = struct(...
-                'class', 'mdepin.demo.URLMovieFinder', ...
-                'URL', url);
-            testCase.Lister = mdepin.BeanFactory( ...
-                mdepin.StructContext(ctx)).getBean('Lister');
+            testCase.Lister = mdepin.createApplication(ctx, 'Lister');
         end
         
         function movies = getMoviesByAlice(testCase)

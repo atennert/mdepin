@@ -14,7 +14,7 @@ classdef DisplayCommand < mdepin.demo.AbstractCommand
         end
         
         function execute(obj)
-            disp(['Command: ', obj.DisplayName]);
+            disp(['Command: ', sprintf('%d', obj.DisplayName)]);
         end
     end
     
