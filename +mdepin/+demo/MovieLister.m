@@ -1,7 +1,8 @@
 classdef MovieLister < mdepin.Bean
     %MOVIELISTER List movies by a given director
-    
+        
     % Copyright Matt McDonnell, 2015
+    % Copyright Andreas Tennert, 2019
     % See LICENSE file for license details
     
     properties

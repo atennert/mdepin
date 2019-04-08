@@ -29,21 +29,6 @@ disp('Movies by Alice (from file):')
 movies = lister.getMoviesDirectedBy('Alice').Title';
 fprintf('  %s\n', movies{:})
 
-%% MovieFinder from URL
-% We now want to read our list of movies from a URL rather than local file.
-% Do this by creating a new application that uses a different Finder
-% component:
-ctxURL.Lister.class = 'mdepin.demo.MovieLister';
-ctxURL.Lister.Finder = 'URLFinder';
-ctxURL.URLFinder.class = 'mdepin.demo.URLMovieFinder';
-ctxURL.URLFinder.URL = 'http://www.matt-mcdonnell.com/mdepin_demo_Movies.csv';
-% Create the new lister 
-listerURL = mdepin.createApplication(ctxURL, 'Lister');
-
-disp('Movies by Alice (from URL):')
-movies = listerURL.getMoviesDirectedBy('Alice').Title';
-fprintf('  %s\n', movies{:})
-
 %%
 % Copyright Matt McDonnell, 2015
 % See LICENSE file for license details
