@@ -54,6 +54,9 @@ classdef BeanFactory < handle
         end
         %%
         function bean = getBean(obj, beanId)
+            if ~obj.IsInitialized
+                obj.init();
+            end
             bean = obj.Beans(beanId);
         end
     end
