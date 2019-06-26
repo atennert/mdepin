@@ -2,6 +2,7 @@ classdef BeanFactoryTest < matlab.unittest.TestCase
     %BEANFACTORYTEST Test creation of bean factory from context object
     
     % Copyright Matt McDonnell, 2015
+    % Copyright Andreas Tennert, 2019
     % See LICENSE file for license details
     properties
     end
@@ -31,6 +32,20 @@ classdef BeanFactoryTest < matlab.unittest.TestCase
                 beanFactory.init();
             catch ME
                 testCase.assertEqual(ME.identifier, 'dep:cycle');
+                return
+            end
+            error('expected:fail', 'Expected test to fail');
+        end
+        
+        function testCreateAppOnlyOnce(testCase)
+            context.Data.class = 'mdepin.test.mock.MockData';
+            context = mdepin.StructContext( context );
+            beanFactory = mdepin.BeanFactory(context);
+            beanFactory.init();
+            try
+                beanFactory.init();
+            catch ME
+                testCase.assertEqual(ME.identifier, 'BeanFactory:init:AlreadyInitialzed');
                 return
             end
             error('expected:fail', 'Expected test to fail');
